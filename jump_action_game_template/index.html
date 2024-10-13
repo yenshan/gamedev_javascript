@@ -41,55 +41,6 @@
                     event.preventDefault();
                 }
             }, { passive: false });
-
-            // Make controls draggable
-            let isDragging = false;
-            let offsetX, offsetY;
-
-            controlsContainer.addEventListener('touchstart', (e) => {
-                isDragging = true;
-                const touch = e.touches[0];
-                offsetX = touch.clientX - controlsContainer.getBoundingClientRect().left;
-                offsetY = touch.clientY - controlsContainer.getBoundingClientRect().top;
-                controlsContainer.style.cursor = 'grabbing';
-            });
-
-            window.addEventListener('touchmove', (e) => {
-                if (isDragging) {
-                    const touch = e.touches[0];
-                    controlsContainer.style.left = `${touch.clientX - offsetX}px`;
-                    controlsContainer.style.top = `${touch.clientY - offsetY}px`;
-                }
-            });
-
-            window.addEventListener('touchend', () => {
-                if (isDragging) {
-                    isDragging = false;
-                    controlsContainer.style.cursor = 'grab';
-                }
-            });
-
-            controlsContainer.addEventListener('mousedown', (e) => {
-                isDragging = true;
-                offsetX = e.clientX - controlsContainer.getBoundingClientRect().left;
-                offsetY = e.clientY - controlsContainer.getBoundingClientRect().top;
-                controlsContainer.style.cursor = 'grabbing';
-            });
-
-            window.addEventListener('mousemove', (e) => {
-                if (isDragging) {
-                    controlsContainer.style.left = `${e.clientX - offsetX}px`;
-                    controlsContainer.style.top = `${e.clientY - offsetY}px`;
-                }
-            });
-
-            window.addEventListener('mouseup', () => {
-                if (isDragging) {
-                    isDragging = false;
-                    controlsContainer.style.cursor = 'grab';
-                }
-            });
-
         </script>
     </body>
 </html>

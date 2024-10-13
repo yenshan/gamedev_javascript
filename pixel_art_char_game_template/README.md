@@ -1,4 +1,4 @@
-# gamedev_javascript
+# pixel art character game template
 
 This is an executable demo that serves as a template for developing 2D pixel caharacter game.
 

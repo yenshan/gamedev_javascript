@@ -1,6 +1,6 @@
-# gamedev_javascript
+# jump action game template
 
-This is an executable demo that serves as a template for developing 2D pixel caharacter game.
+This is an executable demo that serves as a template for developing 2D pixel jump action game.
 
 This project is shared as a learning resource, and there are no plans for future updates.
 
@@ -23,10 +23,9 @@ Enjoy your adventure!
 
 | Key | Action                       |
 |-----|------------------------------|
-| i   | Move up                      |
-| m   | Move down                    |
 | j   | Move left                    |
 | l   | Move right                   |
+| c   | Jump                         |
 
 You also can use a gamepad.
 

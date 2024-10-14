@@ -1,5 +1,3 @@
-import { HtmlGamePad } from "./HtmlGamePad.js"
-
 const keyMap = {
     'j': 'left',
     'l': 'right',
@@ -22,15 +20,6 @@ const btnMap = {
     13: 'down',
     14: 'left',
     15: 'right',
-}
-
-const htmlBtnMap = {
-    'left': 'left',
-    'right': 'right',
-    'up': 'up',
-    'down': 'down',
-    'B': 'B',
-    'A': 'A',
 }
 
 class GamePad {
@@ -104,13 +93,6 @@ export class UserInput {
         this.btnUpHandler = this.btnUpHandler.bind(this);
         gamepad.addEventListener("pressed", this.btnDownHandler);
         gamepad.addEventListener("released", this.btnUpHandler);
-
-        this.htmlBtnDownHandler = this.htmlBtnDownHandler.bind(this);
-        this.htmlBtnUpHandler = this.htmlBtnUpHandler.bind(this);
-        this.html_gamepad = new HtmlGamePad(doc);
-        this.html_gamepad.addEventListener("buttonPress", this.htmlBtnDownHandler);
-        this.html_gamepad.addEventListener("buttonRelease", this.htmlBtnUpHandler);
-
     }
 
     clearInputs() {
@@ -147,14 +129,4 @@ export class UserInput {
     btnUpHandler(event) {
         this.set_input(btnMap, event.index, false);
     }
-
-    htmlBtnDownHandler(event) {
-        this.set_input(htmlBtnMap, event.detail, true);
-    }
-
-    htmlBtnUpHandler(event) {
-        this.set_input(htmlBtnMap, event.detail, false);
-    }
-
-
 }

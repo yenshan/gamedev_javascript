@@ -19,6 +19,7 @@ canvas.width = canvas_bg.width * 2;
 canvas.height = canvas_bg.height * 2;
 context.imageSmoothingEnabled = false;
 
+console.log(`${canvas.width},${canvas.height}`)
 // Adjust canvas size to maintain aspect ratio
 function resizeCanvas() {
     const aspectRatio = SCREEN_W / SCREEN_H;

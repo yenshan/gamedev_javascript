@@ -82,26 +82,21 @@ export class World {
         if (obj.x > (this.w-1)* MAP_ELEM_SIZE) obj.x = 1 
     }
 
+    can_not_go_through(o, dy) {
+        return !this.canGoThrough(o.x+2, o.y + dy) || !this.canGoThrough(o.x+o.w-2, o.y + dy);
+    }
+
     do_fall(o) {
-        if (o.vy > 0) {
-            if (!this.canGoThrough(o.x+2, o.y + o.h + o.vy)
-                || !this.canGoThrough(o.x+o.w-2, o.y + o.h + o.vy)) {
-                o.vy = 0;
-                return;
-            }
+        if (o.vy == 0 && this.can_not_go_through(o, o.h)) {
+            return;
         }
-        if (o.vy < 0) {
-            if (!this.canGoThrough(o.x+2, o.y+4)
-                || !this.canGoThrough(o.x+o.w-2, o.y+4)) {
-                o.vy = 0;
-                return;
-            }
+        if (o.vy > 0 && this.can_not_go_through(o, o.h + o.vy)) {
+            o.vy = 0;
+            return;
         }
-        if (o.vy == 0) {
-            if (!this.canGoThrough(o.x+2, o.y + o.h)
-                || !this.canGoThrough(o.x+o.w-2, o.y + o.h)) {
-                return;
-            }
+        if (o.vy < 0 && this.can_not_go_through(o, 4)) {
+            o.vy = 0;
+            return;
         }
         o.vy += GRAVITY;
         o.y = Math.round(o.y+o.vy);

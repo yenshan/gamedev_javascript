@@ -9,7 +9,8 @@ const State = {
     STOP: 'STOP',
     MOVE_LEFT : 'MOVE_LEFT',
     MOVE_RIGHT: 'MOVE_RIGHT',
-    JUMP: 'JUMP',
+    JUMP_UP: 'JUMP_UP',
+    JUMP_DOWN: 'JUMP_DOWN',
     FALL: 'FALL',
 }
 
@@ -17,7 +18,8 @@ const anime_table = {
     STOP: {move_count: 1, frames: [0], frame_interval: 60},
     MOVE_LEFT: {move_count: 12, frames: [1,2,3,1,5,4], frame_interval: 2},
     MOVE_RIGHT: {move_count: 12, frames: [1,2,3,1,5,4], frame_interval: 2},
-    JUMP: {move_count: 60, frames: [6], frame_interval: 1},
+    JUMP_UP: {move_count: 60, frames: [6], frame_interval: 1},
+    JUMP_DOWN: {move_count: 60, frames: [6], frame_interval: 1},
     FALL: {move_count: 1, frames: [3], frame_interval: 1},
 };
 
@@ -80,7 +82,7 @@ export class Chara {
             this.flip = false;
         }
         this.vy = JUMP_VY;
-        this.change_state(State.JUMP);
+        this.change_state(State.JUMP_UP);
     }
     
     check_move_right() {
@@ -109,7 +111,15 @@ export class Chara {
         return this.count_move(1, 0);
     }
 
-    action_jump() {
+    action_jump_up() {
+        if (this.vy > 0) {
+            this.change_state(State.JUMP_DOWN);
+            return { finished: false };
+        }
+        return this.count_move(this.vx, 0);
+    }
+
+    action_jump_down() {
         if (this.vy == 0) {
             this.change_state(State.STOP);
             return { finished: false };

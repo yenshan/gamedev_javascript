@@ -9,32 +9,16 @@ const State = {
     STOP: 'STOP',
     MOVE_LEFT : 'MOVE_LEFT',
     MOVE_RIGHT: 'MOVE_RIGHT',
-    TURN_LEFT: 'TURN_LEFT',
-    TURN_RIGHT: 'TURN_RIGHT',
-    BREAKING: 'BREAKING',
-    JUMP_UP: 'JUMP_UP',
-    JUMP_HIT: 'JUMP_HIT',
-    JUMP_DOWN: 'JUMP_DOWN',
+    JUMP: 'JUMP',
     FALL: 'FALL',
-    DEAD: 'DEAD',
-    FALL_END: 'FALL_END',
-    REBORN: 'REBORN'
 }
 
 const anime_table = {
     STOP: {move_count: 1, frames: [0], frame_interval: 60},
     MOVE_LEFT: {move_count: 12, frames: [1,2,3,1,5,4], frame_interval: 2},
     MOVE_RIGHT: {move_count: 12, frames: [1,2,3,1,5,4], frame_interval: 2},
-    TURN_LEFT: {move_count: 8, frames: [0], frame_interval: 2},
-    TURN_RIGHT: {move_count: 8, frames: [0], frame_interval: 2},
-    BREAKING: {move_count: 16, frames: [7,10,11], frame_interval: 2},
-    JUMP_UP: {move_count: 60, frames: [6], frame_interval: 1},
-    JUMP_HIT: {move_count: 16, frames: [6], frame_interval: 1},
-    JUMP_DOWN: {move_count: 60, frames: [6], frame_interval: 1},
+    JUMP: {move_count: 60, frames: [6], frame_interval: 1},
     FALL: {move_count: 1, frames: [3], frame_interval: 1},
-    DEAD: {move_count: 30, frames: [8], frame_interval: 30},
-    FALL_END: {move_count: 60, frames: [9], frame_interval: 60},
-    REBORN: {move_count: 70, frames: [0], frame_interval: 70},
 };
 
 const spsheet = new SpriteSheet(CHARA_WIDTH, CHARA_HEIGHT, "./assets/chara_spritesheet.png");
@@ -96,7 +80,7 @@ export class Chara {
             this.flip = false;
         }
         this.vy = JUMP_VY;
-        this.change_state(State.JUMP_UP);
+        this.change_state(State.JUMP);
     }
     
     check_move_right() {
@@ -125,16 +109,8 @@ export class Chara {
         return this.count_move(1, 0);
     }
 
-    action_jump_up() {
-        if (this.vy > 0) {
-            this.change_state(State.JUMP_DOWN);
-            return { finished: false };
-        }
-        return this.count_move(this.vx, 0);
-    }
-
-    action_jump_down() {
-        if (this.vy <= 0) {
+    action_jump() {
+        if (this.vy == 0) {
             this.change_state(State.STOP);
             return { finished: false };
         }

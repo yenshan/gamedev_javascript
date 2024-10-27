@@ -29,3 +29,9 @@ Enjoy your adventure!
 
 You also can use a gamepad.
 
+
+## License
+The source code is licensed under the MIT License. See the `LICENSE` file for more details.
+
+The assets (images, sounds, etc.) in the `assets` folder are not covered by the MIT License and are subject to a different license. Please see `assets/LICENSE` for details.
+

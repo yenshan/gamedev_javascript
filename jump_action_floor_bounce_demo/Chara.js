@@ -129,6 +129,10 @@ export class Chara {
     }
 
     action_move_left() {
+        if (input.A) {
+            this.do_jump();
+            return;
+        }
         if (!this.count_move(-1, 0).finished)
             return;
 
@@ -138,8 +142,6 @@ export class Chara {
                 this.change_state(State.FALL);
             else 
                 this.change_state(State.FALL2);
-        } else if (input.A) {
-            this.do_jump();
         } else if (input.left) {
             this.move_left();
         } else if (this.prev_state == State.STOP) {
@@ -152,6 +154,10 @@ export class Chara {
     }
 
     action_move_right() {
+        if (input.A) {
+            this.do_jump();
+            return;
+        }
         if (!this.count_move(this.vx, 0).finished)
             return;
 
@@ -161,8 +167,6 @@ export class Chara {
                 this.change_state(State.FALL);
             else 
                 this.change_state(State.FALL2);
-        } else if (input.A) {
-            this.do_jump();
         } else if (input.right) {
             this.move_right();
         } else if (this.prev_state == State.STOP) {

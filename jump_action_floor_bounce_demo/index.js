@@ -84,11 +84,10 @@ function update() {
 
     enlarge_and_display_background_buffer();
 
-//    requestAnimationFrame(update);
+    requestAnimationFrame(update);
 }
 
 let world = new World(SCREEN_W, SCREEN_H, stages[0].data);
 
-setInterval(update, 20);
-//requestAnimationFrame(update);
+update();
 

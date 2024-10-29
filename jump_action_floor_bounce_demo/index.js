@@ -72,8 +72,7 @@ function draw_background_image() {
 
 function enlarge_and_display_background_buffer() {
     context.clearRect(0, 0, canvas.width, canvas.height);
-    draw_background_image();
-    context.drawImage(canvas_bg, 8, 0, canvas_bg.width-8, canvas_bg.height, 0, 0, canvas.width, canvas.height);
+    context.drawImage(canvas_bg, 8, 8*2, canvas_bg.width-8, canvas_bg.height-8*4, 0, 0, canvas.width, canvas.height);
 }
 
 function update() {
